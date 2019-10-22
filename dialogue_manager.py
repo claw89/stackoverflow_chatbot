@@ -44,8 +44,8 @@ class DialogueManager(object):
         self.tag_classifier = unpickle_file(paths['TAG_CLASSIFIER'])
         self.thread_ranker = ThreadRanker(paths)
 
-	# Chit-chat bot part:
-	self.chatbot = self.create_chitchat_bot()
+        # Chit-chat bot part:
+        self.chatbot = self.create_chitchat_bot()
 
     def create_chitchat_bot(self):
         """Initializes self.chitchat_bot with some conversational model."""
@@ -55,11 +55,11 @@ class DialogueManager(object):
         # "chatterbot.trainers.ChatterBotCorpusTrainer"
         # and then calling *train* function with "chatterbot.corpus.english" param
         
-	chatbot = ChatBot('stack_chatbot')
-	trainer = ChatterBotCorpusTrainer(chatbot)
-	trainer.train("chatterbot.corpus.english")
-	
-	return chatbot
+        chatbot = ChatBot('stack_chatbot')
+        trainer = ChatterBotCorpusTrainer(chatbot)
+        trainer.train("chatterbot.corpus.english")
+
+        return chatbot
 
        
     def generate_answer(self, question):
