@@ -12,7 +12,7 @@ RESOURCE_PATH = {
     'TAG_CLASSIFIER': 'tag_classifier.pkl',
     'TFIDF_VECTORIZER': 'tfidf_vectorizer.pkl',
     'THREAD_EMBEDDINGS_FOLDER': 'thread_embeddings_by_tags',
-    'WORD_EMBEDDINGS': 'data/starspace_embeddings.tsv',
+    'WORD_EMBEDDINGS': 'embeddings.pkl',
 }
 
 
@@ -33,10 +33,8 @@ def text_prepare(text):
 
 def load_embeddings(embeddings_path):
     """Loads pre-trained word embeddings from tsv file.
-
     Args:
       embeddings_path - path to the embeddings file.
-
     Returns:
       embeddings - dict mapping words to vectors;
       embeddings_dim - dimension of the vectors.
@@ -45,12 +43,11 @@ def load_embeddings(embeddings_path):
     # Hint: you have already implemented a similar routine in the 3rd assignment.
     # Note that here you also need to know the dimension of the loaded embeddings.
     # When you load the embeddings, use numpy.float32 type as dtype
+    
+    #Changed to directly load precomputed embeddings dictionary
 
-    embeddings = {}
-    with open(embeddings_path, 'r') as file:
-        for line in file.readlines():
-            line_content = line[:-1].split('\t')
-            embeddings[line_content[0]] = np.array(line_content[1:], dtype=np.float32)
+    with open(embeddings_path, 'rb') as file:
+        embeddings = pickle.load(file)
 
     embeddings_dim = list(embeddings.values())[0].shape[0]
 
